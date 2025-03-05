@@ -88,7 +88,10 @@ class Controller:
                         table = input("Enter Table Name: ")
                         self.table_management.drop_table(table)
                     case 4: # insert 
-                        table = input("Enter Table Name: ")
+                        table = input("Enter Table Name: ")  
+                        if  not self.table_management.check_table(table):
+                            print ("Table not found")
+                            continue
                         columns = self.table_management.get_columns(table)
                         print(columns)
                         values = []
@@ -101,12 +104,25 @@ class Controller:
                         self.table_management.show_rows(table)
                     case 6:
                         table = input("Enter Table Name: ")
+                        if  not self.table_management.check_table(table):
+                            print ("Table not found")
+                            continue
                         row_id = int(input("Enter Row ID: "))
+                        if  not self.table_management.check_id(table,row_id):
+                            print ("ID not found")
+                            continue
+
                         self.table_management.delete_row(table,row_id)
 
                     case 7:
                         table = input("Enter Table Name: ")
+                        if  not self.table_management.check_table(table):
+                            print ("Table not found")
+                            continue
                         row_id = int(input("Enter Row ID: "))
+                        if  not self.table_management.check_id(table,row_id):
+                            print ("ID not found")
+                            continue
                         columns = self.table_management.get_columns(table)
                         values = []
                         for column in columns:
