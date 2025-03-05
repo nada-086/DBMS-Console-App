@@ -32,7 +32,9 @@ class Controller:
             3) Drop Table
             4) Insert New Row
             5) Show Rows
-            6) Return to DB Management
+            6) Delete Row
+            7) Update Row
+            8) Return to DB Management
         """)
 
     def db_operations(self):
@@ -72,7 +74,7 @@ class Controller:
                 match operation:
                     case 1:
                         self.table_management.show_table()
-                    case 2:
+                    case 2:  # create table
                         table_name = input("Enter Table Name: ")
                         columns = []
                         num_columns = int(input("Enter the Number of Columns: "))
@@ -85,7 +87,7 @@ class Controller:
                     case 3:
                         table = input("Enter Table Name: ")
                         self.table_management.drop_table(table)
-                    case 4:
+                    case 4: # insert 
                         table = input("Enter Table Name: ")
                         columns = self.table_management.get_columns(table)
                         print(columns)
@@ -97,10 +99,26 @@ class Controller:
                     case 5:
                         table = input("Enter Table Name: ")
                         self.table_management.show_rows(table)
-
                     case 6:
+                        table = input("Enter Table Name: ")
+                        row_id = int(input("Enter Row ID: "))
+                        self.table_management.delete_row(table,row_id)
+
+                    case 7:
+                        table = input("Enter Table Name: ")
+                        row_id = int(input("Enter Row ID: "))
+                        columns = self.table_management.get_columns(table)
+                        values = []
+                        for column in columns:
+                            value = input(f"Enter The new value {column}: ")
+                            values.append(value)
+                        self.table_management.update_row(table,row_id,values)
+                    
+                    case 8:
                         break
+
                     case _:
                         print("ERR: Invalid Operation")
-            except ValueError:
+            except Exception as e:
+                print(e)
                 print("Value Error: Invalid Number. Please Enter a Valid Integer Input.")
