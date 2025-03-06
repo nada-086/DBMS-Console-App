@@ -32,9 +32,13 @@ class Controller:
             3) Drop Table
             4) Insert New Row
             5) Show Rows
+<<<<<<< HEAD
+            6) Return to DB Management
+=======
             6) Delete Row
             7) Update Row
             8) Return to DB Management
+>>>>>>> 295783ff496c0fe780e9dbd23d9ffcad4dd8de93
         """)
 
     def db_operations(self):
@@ -74,7 +78,11 @@ class Controller:
                 match operation:
                     case 1:
                         self.table_management.show_table()
+<<<<<<< HEAD
+                    case 2:
+=======
                     case 2:  # create table
+>>>>>>> 295783ff496c0fe780e9dbd23d9ffcad4dd8de93
                         table_name = input("Enter Table Name: ")
                         columns = []
                         num_columns = int(input("Enter the Number of Columns: "))
@@ -87,11 +95,16 @@ class Controller:
                     case 3:
                         table = input("Enter Table Name: ")
                         self.table_management.drop_table(table)
+<<<<<<< HEAD
+                    case 4:
+                        table = input("Enter Table Name: ")
+=======
                     case 4: # insert 
                         table = input("Enter Table Name: ")  
                         if  not self.table_management.check_table(table):
                             print ("Table not found")
                             continue
+>>>>>>> 295783ff496c0fe780e9dbd23d9ffcad4dd8de93
                         columns = self.table_management.get_columns(table)
                         print(columns)
                         values = []
@@ -103,6 +116,12 @@ class Controller:
                         table = input("Enter Table Name: ")
                         self.table_management.show_rows(table)
                     case 6:
+<<<<<<< HEAD
+                        break
+                    case _:
+                        print("ERR: Invalid Operation")
+            except ValueError:
+=======
                         table = input("Enter Table Name: ")
                         if  not self.table_management.check_table(table):
                             print ("Table not found")
@@ -137,4 +156,5 @@ class Controller:
                         print("ERR: Invalid Operation")
             except Exception as e:
                 print(e)
+>>>>>>> 295783ff496c0fe780e9dbd23d9ffcad4dd8de93
                 print("Value Error: Invalid Number. Please Enter a Valid Integer Input.")
